@@ -35,14 +35,11 @@ INSTALLED_APPS = [
     'CommonApp.apps.CommonappConfig',
     'OrderManagement.apps.OrdermanagementConfig',
     'AdminDashBoard.apps.AdmindashboardConfig',
-    'whitenoise',
-    'gunicorn',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -219,5 +216,3 @@ STATICFILES_DIRS =[
 ]
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

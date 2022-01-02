@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tj!f_)=anceb3)34fv*oc$%15+y)m@!&467+if^h7koumqi1gn'
 STRIP_KEY = 'sk_test_51KAqbJAz9OavjjPhXerGxPY7nDiRB9RQe3IVVGpbsCQqgbDTpfvjmzkrUSlSfoCk1HcrViPulSkOA0az0LPqp1Nv00Y7V0jyPQ'
 
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -162,16 +163,30 @@ REST_FRAMEWORK = {
     # },
 }
 
-CORS_ORIGIN_WHITELIST = (
+FONTEND_URL = "https://tech-cyrus.herokuapp.com/"
+
+
+CORS_ALLOWED_ORIGINS = [
     'https://localhost:3000',
     'http://localhost:3000',
+]
+
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000/',
+    'http://localhost:3000/',
 )
 
-# JWT_AUTH  = {
-#     'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=20),
-#     'JWT_ALLOW_REFRESH':True,
-#     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(minutes=2)
-# }
+# CORS_ALLOWED_ORIGINS = [
+#     'https://tech-cyrus.herokuapp.com/',
+#     'https://tech-cyrus.herokuapp.com',
+#     'tech-cyrus.herokuapp.com',
+# ]
+# CORS_ORIGIN_WHITELIST = (
+#     'https://tech-cyrus.herokuapp.com/',
+#     'https://tech-cyrus.herokuapp.com',
+#     'tech-cyrus.herokuapp.com',
+# )
+
 
 AUTH_USER_MODEL = "UserManagement.UserAccount"
 

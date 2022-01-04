@@ -50,24 +50,34 @@ class GetUserStatusAndDetails(APIView):
     def get(self, request):
         auth = request.user.is_authenticated
         if(auth):
+            
             try:
                 avatar = get_object_or_404(
                     UserProfile, user__id=request.user.id).avatar
             except:
                 avatar = None
-            admin = request.user.is_admin
-            content = {
-                'auth': auth,
-                'admin': admin,
-                'username': request.user.username,
-                'email': request.user.email,
-                'avatar': avatar
-            }
-            serializer = UserDetailsForNav(data=content)
-            if serializer.is_valid():
+                
+            try:
+                admin = request.user.is_superuser
+            except:
+                admin = False
+            
+            try:
+                content = {
+                    'auth': auth,
+                    'admin': admin,
+                    'username': request.user.username,
+                    'email': request.user.email,
+                    'avatar': avatar
+                }
+                serializer = UserDetailsForNav(content)
                 return Response(serializer.data, status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+            except Exception as E:
+                print(f'-----------------------{E}')
+                
+                return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
         else:
+            print(f"----------------Unauthenticated ......................")
             return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
             
 

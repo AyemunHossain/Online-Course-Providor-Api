@@ -9,10 +9,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tj!f_)=anceb3)34fv*oc$%15+y)m@!&467+if^h7koumqi1gn'
 STRIP_KEY = 'sk_test_51KAqbJAz9OavjjPhXerGxPY7nDiRB9RQe3IVVGpbsCQqgbDTpfvjmzkrUSlSfoCk1HcrViPulSkOA0az0LPqp1Nv00Y7V0jyPQ'
 
-# DEBUG = False
-DEBUG = True
 
+#For production
+# DEBUG = False
+# ALLOWED_HOSTS = ['backend.techcyrus.com']
+
+DEBUG = True
 ALLOWED_HOSTS = ['*']
+
+
 
 
 # Application definition
@@ -163,8 +168,25 @@ REST_FRAMEWORK = {
     # },
 }
 
-FONTEND_URL = "https://tech-cyrus.herokuapp.com/"
+#For Deployment:
+# FONTEND_URL = "https://tech-cyrus.herokuapp.com/"
 
+# CORS_ORIGIN_WHITELIST = (
+#     'https://tech-cyrus.herokuapp.com/',
+#     'https://tech-cyrus.herokuapp.com',
+#     'tech-cyrus.herokuapp.com',
+# )
+
+# CORS_ALLOWED_ORIGINS = [
+#     'https://tech-cyrus.herokuapp.com/',
+#     'https://tech-cyrus.herokuapp.com',
+#     'tech-cyrus.herokuapp.com',
+# ]
+
+
+
+#For local uses:
+FONTEND_URL = "http://localhost:3000"
 
 CORS_ALLOWED_ORIGINS = [
     'https://localhost:3000',
@@ -175,18 +197,6 @@ CORS_ORIGIN_WHITELIST = (
     'https://localhost:3000/',
     'http://localhost:3000/',
 )
-
-# CORS_ALLOWED_ORIGINS = [
-#     'https://tech-cyrus.herokuapp.com/',
-#     'https://tech-cyrus.herokuapp.com',
-#     'tech-cyrus.herokuapp.com',
-# ]
-# CORS_ORIGIN_WHITELIST = (
-#     'https://tech-cyrus.herokuapp.com/',
-#     'https://tech-cyrus.herokuapp.com',
-#     'tech-cyrus.herokuapp.com',
-# )
-
 
 AUTH_USER_MODEL = "UserManagement.UserAccount"
 

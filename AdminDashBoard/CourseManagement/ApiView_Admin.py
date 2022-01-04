@@ -43,7 +43,6 @@ class CourseViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid()
-        print(f"-----------------> > >{ serializer.errors} < < < -------------------")
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
@@ -62,9 +61,13 @@ class CourseViewSet(viewsets.ModelViewSet):
     
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+        except Exception as E:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+            
         self.perform_update(serializer)
         return Response(serializer.data)
     
